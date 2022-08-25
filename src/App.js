@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PCElement from './lib/PCElement';
 import PCBoard from './lib/PCBoard';
 
@@ -21,15 +21,13 @@ function App() {
       400,
     );
     ui.pushChild(board);
-  }, [])
-
-  useEffect( () => {
     ui.renderAll();
-  })
+    window.onresize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+      ui.renderAll();
+    }
+  });
 
-  window.onresize = () => {
-    setWindowSize([window.innerWidth, window.innerHeight]);
-  }
 
   return (
     <div className="App">
